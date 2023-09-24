@@ -1,17 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {rickMortyService} from "../services/rickMortyService";
+import React from 'react';
+import {Characters} from "../components/Characters";
 
 const CharactersPage = () => {
-    const [characters, setCharacters] = useState([])
-
-    useEffect(() => {
-        rickMortyService.getCharacters().then(({data}) => setCharacters(data.results))
-    }, []);
-
-    console.log(characters)
     return (
         <div>
-            CharactersPage
+            <Characters/>
         </div>
     );
 };
