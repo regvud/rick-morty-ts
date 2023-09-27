@@ -2,6 +2,8 @@ import {createBrowserRouter} from "react-router-dom";
 import {RootLayout} from "../layouts";
 import {CharactersPage} from "../pages/CharactersPage";
 import {CharacterDetails} from "../components/Characters";
+import {EpisodesPage} from "../pages/EpisodesPage";
+import {EpisodeDetails} from "../components/Episodes";
 
 const router = createBrowserRouter([
     {
@@ -11,7 +13,14 @@ const router = createBrowserRouter([
             },
             {
                 path: 'characters/:id', element: <CharacterDetails/>
+            },
+            {
+                path: 'episodes', element: <EpisodesPage/>
+            },
+            {
+                path: 'episodes/:id', element: <EpisodeDetails/>
             }
+
         ]
     }
 ])

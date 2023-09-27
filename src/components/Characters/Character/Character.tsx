@@ -9,7 +9,7 @@ interface Props {
 const Character: FC<Props> = ({character}) => {
     const navigate = useNavigate();
     const toDetails = () => {
-        navigate(`${character.id}`)
+        navigate(`${character.id}`, {state: character})
     }
 
 

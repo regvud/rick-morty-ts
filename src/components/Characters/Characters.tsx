@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {rickMortyService} from "../../services/rickMortyService";
+import {charactersService} from "../../services/charactersService";
 import {ICharacter} from "../../interfaces";
 import {Character} from "./Character/Character";
 
@@ -7,7 +7,7 @@ const Characters = () => {
     const [characters, setCharacters] = useState<ICharacter[]>([])
 
     useEffect(() => {
-        rickMortyService.getCharacters().then(({data}) => setCharacters(data.results))
+        charactersService.getCharacters().then(({data}) => setCharacters(data.results))
     }, []);
 
 
