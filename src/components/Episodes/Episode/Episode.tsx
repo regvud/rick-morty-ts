@@ -11,7 +11,6 @@ const Episode: FC<Props> = ({episode}) => {
     const toDetails = () => {
         navigate(`${episode.id}`, {state: episode})
     };
-
     return (
         <div>
             <hr/>
