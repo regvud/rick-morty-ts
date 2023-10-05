@@ -1,17 +1,14 @@
-import React, {useEffect, useState} from 'react';
 import {useLocation, useParams} from "react-router-dom";
 import {episodesService} from "../../../services/episodesService";
 import {IEpisode} from "../../../interfaces";
+import {useFetch} from "../../../hooks/useFetch";
 
 const EpisodeDetails = () => {
-    const [episode, setEpisode] = useState<IEpisode>(null)
     const {state} = useLocation();
     const {id} = useParams();
 
-    if (!state) {
-        episodesService.byID(+id).then(({data}) => setEpisode(data))
-    }
-
+    const episode = useFetch<IEpisode>(episodesService.byID(+id));
+    console.log('render')
 
     // const [fetchIds, setFetchIds] = useState<string[]>([])
     // useEffect(() => {
@@ -20,7 +17,7 @@ const EpisodeDetails = () => {
     //         setFetchIds(prevState => [...prevState, value.slice(lastIndex + 1, value.length)])
     //     })
     // }, [episode]);
-    console.log(episode?.characters)
+
     return (
         <div>
             <h2>id: {state ? state.id : episode?.id}</h2>
@@ -31,7 +28,6 @@ const EpisodeDetails = () => {
             <h2>url: {state ? state.url : episode?.url}</h2>
         </div>
     )
-        ;
 };
 
 export {EpisodeDetails};

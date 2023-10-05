@@ -1,18 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {IEpisode} from "../../interfaces";
-import {episodesService} from "../../services/episodesService";
+import {IEpisodesResponse} from "../../interfaces";
 import {Episode} from "./Episode/Episode";
+import {useFetch} from "../../hooks/useFetch";
+import {episodesService} from "../../services/episodesService";
 
 const Episodes = () => {
-    const [episodes, setEpisodes] = useState<IEpisode[]>([])
-
-    useEffect(() => {
-        episodesService.getEpisodes().then(({data}) => setEpisodes(data.results))
-    }, []);
-
+    const episodes = useFetch<IEpisodesResponse>(episodesService.getEpisodes());
     return (
         <div>
-            {episodes.map(episode => <Episode episode={episode} key={episode.id}/>)}
+            {episodes?.results.map(episode => <Episode episode={episode} key={episode.id}/>)}
         </div>
     );
 };

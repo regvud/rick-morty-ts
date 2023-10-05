@@ -1,19 +1,13 @@
-import React, {useEffect, useState} from 'react';
 import {charactersService} from "../../services/charactersService";
-import {ICharacter} from "../../interfaces";
+import {ICharactersResponse} from "../../interfaces";
 import {Character} from "./Character/Character";
+import {useFetch} from "../../hooks/useFetch";
 
 const Characters = () => {
-    const [characters, setCharacters] = useState<ICharacter[]>([])
-
-    useEffect(() => {
-        charactersService.getCharacters().then(({data}) => setCharacters(data.results))
-    }, []);
-
-
+    const characters = useFetch<ICharactersResponse>(charactersService.getCharacters());
     return (
         <div>
-            {characters.map(character => <Character character={character} key={character.id}/>)}
+            {characters?.results.map(character => <Character character={character} key={character.id}/>)}
         </div>
     );
 };
