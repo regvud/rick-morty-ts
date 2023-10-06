@@ -4,7 +4,8 @@ import {ICharacter, ICharactersResponse} from "../interfaces";
 
 const charactersService = {
     getCharacters: () => apiService.get<ICharactersResponse>(urls.characters.base),
-    byID: (id: number) => apiService.get<ICharacter>(urls.characters.byID(id))
+    byID: (id: number) => apiService.get<ICharacter>(urls.characters.byID(id)),
+    getMultipleCharacters: (ids: string[]) => apiService.get<ICharacter[]>(urls.characters.byMultipleIds(ids))
 }
 
 export {
