@@ -6,7 +6,7 @@ import {useFetch} from "../../../hooks/useFetch";
 const CharacterDetails = () => {
     const {id} = useParams();
     const {state} = useLocation();
-    const character = useFetch(charactersService.byID(+id));
+    const [character] = useFetch(charactersService.byID(+id));
     return (
         <div>
             <h1>{state ? state?.name : character?.name}</h1>
